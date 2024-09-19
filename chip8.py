@@ -9,11 +9,9 @@ class Chip8:
         self.sound_timer = 0
         self.keys = [0] * 16
 
-    def load_rom(self, file_path):
-        with open(file_path, 'rb') as f:
-            rom_data = f.read()
-            for i, byte in enumerate(rom_data):
-                self.memory[0x200 + i] = byte
+    def load_rom(self, rom_data):
+        for i, byte in enumerate(rom_data):
+            self.memory[0x200 + i] = byte
 
     def fetch_opcode(self):
         return (self.memory[self.PC] << 8) | self.memory[self.PC + 1]
